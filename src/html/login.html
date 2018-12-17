@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/login.js"></script>
+</head>
+
+<body>
+    <div class="container" style="width: 600px;height: 563px;background-color: rgba(242, 242, 242, 1);padding: 30px;">
+        <h1>用户登陆</h1>
+        <form>
+            <div class="form-group">
+                <label for="username">用户名：</label>
+                <input type="text" class="form-control" id="username" placeholder="请求输入有效的用户名">
+                <div class="invalid-feedback">用户名或密码错误</div>
+            </div>
+            <div class="form-group">
+                <label for="password">密码：</label>
+                <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                <div class="invalid-feedback">用户名或密码错误</div>
+            </div>
+            <div class="form-group yzl" style="width: 275px;">
+                <label for="password">验证码：(注意大小写)</label>
+                <input type="text" class="form-control" id="codeNum" placeholder="请输入验证码" style="width: 275px;" value="">
+                <div class="invalid-feedback">验证码有误</div>
+            </div>
+            <!-- <div class="form-group yzr" style="width: 200px;"> -->
+            <!-- <input type="text" id="input" value="" /> -->
+            <!-- <input type="button" id="code" value=""> -->
+            <span id="code"></span>
+            <!-- <input type="button" value="验证" onclick="validate()" /> -->
+            <!-- </div> -->
+            <!-- <div class="form-check" style="clear: both;margin-top: 10px;">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">7天免登陆</label>
+            </div> -->
+            <button type="submit" class="btn btn-primary btnLogin" style="clear: both;margin-top:15px;float: left;">登录</button>
+        </form>
+    </div>
+</body>
+
+</html>
