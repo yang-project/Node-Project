@@ -1,0 +1,34 @@
+文件分布介绍：
+	
+	doc
+	src:
+	  assets
+		*data数据库数据
+		*layui
+		*bootstrap
+        css
+	html
+	img
+	js
+	uploads 上传图片保存本地路径地址
+	router路由模块
+	    *sql.js数据库操作封装
+	    *index.js 大路由模块
+            *login.js登录路由模块
+            *user.js用户操作路由模块
+            *page.js商品操作路由模块
+	    *shop.js订单操作路由模块
+	    *load.js商品增加上传图片路由模块
+	server.js服务器连接路由
+	congfig.json端口配置信息
+
+项目布局介绍：
+	
+	login.html 登录信息页面
+	center2.html 
+		*左边侧边导航栏
+		*头部  面包屑
+		*内容主体  
+			（包含商品列表、用户列表、订单列表均是			用一个table渲染出来，只有一个页面）
+
+		

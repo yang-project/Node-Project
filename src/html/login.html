@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆页面</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- <script src="../js/login.js"></script> -->
+</head>
+
+<body>
+    <div class="container" style="width: 600px;height: 563px;background-color: rgba(242, 242, 242, 1);padding: 30px;">
+        <h1>用户登陆</h1>
+        <form>
+            <div class="form-group">
+                <label for="username">用户名：</label>
+                <input type="text" class="form-control" id="username" placeholder="请求输入有效的用户名">
+                <div class="invalid-feedback">用户名或密码错误</div>
+            </div>
+            <div class="form-group">
+                <label for="password">密码：</label>
+                <input type="password" class="form-control" id="password" placeholder="请输入密码">
+                <div class="invalid-feedback">用户名或密码错误</div>
+            </div>
+            <div class="form-group yzl" style="width: 275px;">
+                <label for="password">验证码：(注意大小写)</label>
+                <input type="text" class="form-control" id="codeNum" placeholder="请输入验证码" style="width: 275px;" value="">
+                <div class="invalid-feedback">验证码有误</div>
+            </div>
+            <!-- <div class="form-group yzr" style="width: 200px;"> -->
+            <!-- <input type="text" id="input" value="" /> -->
+            <!-- <input type="button" id="code" value=""> -->
+            <span id="code"></span>
+            <!-- <input type="button" value="验证" onclick="validate()" /> -->
+            <!-- </div> -->
+            <!-- <div class="form-check" style="clear: both;margin-top: 10px;">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">7天免登陆</label>
+            </div> -->
+            <button type="submit" class="btn btn-primary btnLogin" style="clear: both;margin-top:15px;float: left;">登录</button>
+        </form>
+    </div>
+    <script src='../js/jquery-1.10.1.min.js'></script>
+    <script>
+          //================验证码=======================
+    let code = document.querySelector('#code');
+    //点击生成验证码
+    code.onclick = function () {
+        update();
+    }
+    update();
+    //更新验证码
+    function update() {
+        var num = randomNum();
+        code.innerHTML = num;
+        var color = randomColor(16);
+        code.style.color = color;
+    }
+    var num = '';
+    //生成验证码
+    function randomNum() {
+        num = '';
+        var numLength = 5;
+        var codes = '0123456789zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP';
+        for (var i = 0; i < numLength; i++) {
+            num += codes.charAt(parseInt(Math.random() * codes.length));
+        }
+        return num;
+    }
+    //生成随机颜色
+    function randomColor(str) {
+        if (str == 16) {
+            //生成16进制的   '0123456789abcdef'  #666677
+            var str = '0123456789abcdef';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += str.charAt(parseInt(Math.random() * str.length));
+            }
+
+            return color;
+
+        } else if (str == 'rgb') {
+            //rgb(255,255,0) 生成3个随机数，每个随机数应该在  0-255
+            var r = parseInt(Math.random() * 256);
+            var g = parseInt(Math.random() * 256);
+            var b = parseInt(Math.random() * 256);
+
+            return 'rgb(' + r + ',' + g + ',' + b + ')';
+
+        } else {
+            alert('参数传错了');
+        }
+    }
+    //验证码检验
+    let isok = false;
+    let codeNum = document.querySelector('#codeNum');
+    codeNum.onblur = () => {
+        var codeVal = codeNum.value.trim();
+        var randNum = code.innerHTML;
+        //非空判断
+        if (codeVal) {
+            if (codeVal == randNum) {
+                codeNum.classList.remove('is-invalid');
+                codeNum.classList.add('is-valid');
+                isok = true;
+            } else {
+                codeNum.classList.remove('is-valid');
+                codeNum.classList.add('is-invalid');
+                codeNum.value = '';
+                codeNum.focus();
+                isok = false;
+            }
+        }
+    }
+
+    //====================================================
+    //================登陆========================
+    let username = document.querySelector('#username');
+    let password = document.querySelector('#password');
+    let btnLogin = document.querySelector('.btnLogin');
+    let status = [200, 304];
+
+    
+    $('#username').blur(function(){
+
+    });
+
+    btnLogin.onclick = (e) => {
+        let _username = username.value;
+        let _password = password.value;
+        let codeVal = codeNum.value;
+        console.log(2);
+        let xhr = new XMLHttpRequest;
+        xhr.onload = () => {
+            console.log(2);
+            if (status.includes(xhr.status)) {
+                let res = JSON.parse(xhr.responseText);
+                console.log(res);
+                if (res.code == 0 && codeVal) {
+                    location.href = 'center2.html';
+                } else {
+                    username.classList.add('is-invalid');
+                    password.classList.add('is-invalid');
+                }
+            }
+        }
+        xhr.open('post', '/login', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(`username=${_username}&password=${_password}&time=${new Date()}`);
+        e.preventDefault();
+    }
+    </script>
+</body>
+
+</html>

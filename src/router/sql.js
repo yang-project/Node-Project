@@ -20,12 +20,14 @@ exports.query= sql=>{
                 }
                 reject(data);
                 return;
+            }else{
+                data={
+                    status:1,
+                    data:rows
+                }
+                resolve(data);
             }
-            data={
-                status:1,
-                data:rows
-            }
-            resolve(data);
+           
         });
         
     })

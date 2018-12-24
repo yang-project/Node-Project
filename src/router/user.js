@@ -7,8 +7,15 @@ let Router = express.Router();
 
 // 传给前端要渲染的数据
 Router.get('/',async(req,res)=>{
+    // let {page,limit}=req.query;
+    // console.log(page,limit);
+    let qty=(req.query.limit)*1;
+    let page=(req.query.page)*1;
+    let index=(page-1)*qty;
     let sql=`select * from user order by id asc`;
+    let sql2=`select * from user order by id asc limit ${index},${qty}`;
     let dataA=await _sql.query(sql);
+    let dataB=await _sql.query(sql2);
     // console.log(dataA)
     console.log(dataA.data);
     let count=dataA.data.length;
@@ -16,11 +23,10 @@ Router.get('/',async(req,res)=>{
     let data=  {"code": 0,
                 "msg": "",
                 "count": count,
-                "data": dataA.data
+                "data": dataB.data
         }
     
     res.send(data);
-   
 });
 
 
@@ -79,19 +85,7 @@ Router.post('/',bodyParser.urlencoded({extended:false}),(req,res)=>{
                 // "count": 15
                 "data": dataA.data
                 }
-        // console.log(data.data);
-                // let sql2=`select * from user where id=${id}`
-                // _sql.query(sql2).then(function(dataB){
-                //     let data=  {"code": 0,
-                //                 "msg": "ok",
-                //                 // "count": 15
-                //                 "data": dataB.data
-                //         }
-                //         console.log(data.data);
-                //         res.send(data);
-                // }).catch(function(dataB){
-                //         res.send(data);
-                //     });
+        
                 res.send(data);
              }
          }).catch(function(dataA){
@@ -99,14 +93,31 @@ Router.post('/',bodyParser.urlencoded({extended:false}),(req,res)=>{
             res.send(dataA);
          });
         
-    }
-    else if(body1._method=='post'){
+    }else if(body1._method=='post'){
+        console.log(body1.username);
+       
+        let sql=`INSERT INTO user (username,password,sex,score,joinTime) VALUES ('${body1.username}','${body1.password}','${body1.sex}',${body1.score},'${body1.time}')`;
+        // res.send(body1);
+        _sql.query(sql).then(function(dataD){
+            let data=  {
+                "code": 0,
+                "msg": "",
+                // count:
+                "data":dataD
+                }
+                console.log(chenggong);
+            res.send(dataD);
+        }).catch(function(dataD){
+            res.send(dataD);
+        });
 
     }
+   
 
     
    
 });
+
 Router.route('/:id')
     .get(async(req,res)=>{
         let sql=`select * from user`;

@@ -1,0 +1,25 @@
+/* 用户名 */
+
+
+/* 验证码 */
+.yzl{
+    float: left;
+}
+/* .yzr{
+    float: right;
+} */
+#code{  
+    float: right;
+    display: block;
+    width: 200px;
+    height: 70px;
+    background: #ffffff;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 70px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-family:"Times New Roman",Times,serif;
+}
+
