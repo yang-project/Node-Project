@@ -1,28 +1,55 @@
-//把路由封装成模块
-const express = require('express');
-// 引入单独路由模块
-const loginRouter = require('./login');
-const userRouter = require('./user');
-const pageRouter = require('./page');
-const loadRouter = require('./load');
-const shopRouter=require('./shop');
-
-// const shopcarRouter = require('./shopcar');
-
-
-let Router = express.Router();
-// 关于订单列表
-Router.use('/shop',shopRouter);
-// 关于用户登录的路由
-Router.use('/login',loginRouter);
-// 关于用户操作的路由
-Router.use('/user',userRouter);
-
-// 商品操作的路由
-Router.use('/page',pageRouter);
-// 添加商品的路由
-Router.use('/load',loadRouter);
-// 订单的路由
-// Router.use('/shopcar',shopcarRouter);
-
-module.exports = Router;
+import Vue from 'vue'
+import Router from 'vue-router'
+// import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
+import Cart from '@/components/Cart'
+import Mine from '@/components/Mine'
+import Search from '@/components/Search'
+import Categroy from '@/components/Categroy'
+import Goodlist from '@/components/Goodlist'
+import Datail from '@/components/Datail'
+Vue.use(Router)
+export default new Router({
+  routes: [{
+      path: '/',
+      redirect: {
+        name: 'Home'
+      }
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
+    },
+    {
+      path: '/categroy',
+      name: 'Categroy',
+      component: Categroy
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
+    },
+    {
+      path: '/mine',
+      name: 'Mine',
+      component: Mine
+    },
+    {
+      path: '/goodlist',
+      name: 'Goodlist',
+      component: Goodlist
+    },
+    {
+      path: '/datail',
+      name: 'Datail',
+      component: Datail
+    },
+  ]
+})

@@ -1,0 +1,67 @@
+home首页：
+	轮播图：（已用swipe.vue）（https://m.youde.com/youde/f/app/s_10020/advertising/list?type=1 ）
+
+	列表https://m.youde.com/youde/f/app/s_10020/cmsSite/list/json
+
+
+        今日团购（ydyiyao.vue）https://m.youde.com/youde/f/app/s_10020/spgroupbuying/list/json
+
+
+
+        8个列表（已用menu.vue）https://m.youde.com/youde/f/xcx/s_10020/advertising/list?type=4 
+
+
+        精氨酸三个（已用）https://m.youde.com/youde/f/app/s_10020/advertising/list?type=19
+
+
+      （6个家中常备药 diff.vue 已用）https://m.youde.com/youde/f/xcx/s_10020/advertising/list?type=2
+
+       美容瘦身（shoushen.vue 已用）https://m.youde.com/youde/f/xcx/s_10020/advertising/list?type=3
+
+       秒杀（已用menu.vue 18） https://m.youde.com/youde/f/app/s_10020/periods/indexGoods
+
+
+
+     为您推荐 19个 recommend.vue）https://m.youde.com/youde/f/app/s_10020/goods/recommend/list?pageIndex=1
+
+
+搜索：
+	点击搜索跳转至hot.vue组件
+	https://m.youde.com/youde/f/app/s_10020/advertising/list?type=5
+
+
+	所有商品列表（goods/list/searchlist/json）
+	https://m.youde.com/youde/f/app/s_10020/goods/list/searchlist/json
+categroy（分类）：
+	所有分类商品初始化渲染
+	https://m.youde.com/youde/f/app/s_10020/loadCategory
+
+分类页跳列表页：完整的页面接口，需要传参为：thridCategoryId
+
+https://m.youde.com/youde/f/app/s_10020/goods/list/json?keywords=&pageIndex=1&thridCategoryId=h_10920-s_10020&secondCategoryId=h_10893-s_10020&pCateId=&order=salesVolume&sort=asc&brandId=&brandIds=
+ 
+列表页跳至详情页的接口：需要传参为：id
+https://m.youde.com/youde/f/app/s_10020/goods/ajax/goods?id=8160&siteId=s_10020
+
+https://m.youde.com/youde/f/app/s_10020/goods/ajax/goods?id=8160
+
+页面逻辑：
+home： -》首页点击搜索，跳转至热门搜索商品，
+		*热门搜索：热门搜索-搜索历史（点击商品都会跳转至详情页）-取消返回至首页
+	-》点击全球购跳转至其列表页，在列表页点击一个跳转至详情页
+	-》点击轮播图 跳转至
+   选择全球购做为要做的列表页，及相应商品的详请页，及购物车
+	*列表页-》》 （点击返回键返回首页）-》》点击商品调至详情页-》》
+	*详情-》》点击加入购物车（
+			**显示出购买设置，点击x则消失
+			**点击确定，将信息添加至购物车，且数量加+1
+			**点击购物车，跳转至购物车）
+	*购物车（）
+categroy：
+	*选项式显示分类信息
+	*有搜索区域
+
+
+
+
+
