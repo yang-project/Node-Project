@@ -22,8 +22,8 @@ export default {
   created() {
     // 以/dbapi开头的请求，进入到代理服务器（webpack配置）
     // /dbapi/in_theaters  -> http://api.douban.com/v2/movie/dbapi/in_theaters -> http://api.douban.com/v2/movie/in_theaters
-    this.$ajax
-      .get("/apif/xcx/s_10020/advertising/list?type=2")
+    this.$axios
+      .get("/api/f/xcx/s_10020/advertising/list?type=2")
       .then(res => {
         //s
         let data = res.data.data;
@@ -34,7 +34,7 @@ export default {
       .catch(() => {
         // Indicator.close();
       });
-    this.$ajax
+    this.$axios
       .get("/api/f/xcx/s_10020/advertising/list?type=3")
       .then(res => {
         //s
@@ -55,7 +55,9 @@ export default {
   /* height: 340px; */
   height: 445px;
   padding: 10px;
-  width: 300px;
+ 
+    /* 布局改动 */
+     width: 100%;
 }
 #diff .group .groupListCont:nth-of-type(2n-1) {
   margin-right: 10px;

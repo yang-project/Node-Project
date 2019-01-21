@@ -22,7 +22,7 @@ export default {
   created() {
     // 以/dbapi开头的请求，进入到代理服务器（webpack配置）
     // /dbapi/in_theaters  -> http://api.douban.com/v2/movie/dbapi/in_theaters -> http://api.douban.com/v2/movie/in_theaters
-    this.$ajax
+    this.$axios
       .get("/api/f/app/s_10020/advertising/list?type=19")
       .then(res => {
         //s
@@ -44,11 +44,18 @@ export default {
 #Three {
   font-size: 16px !important;
   height: 132px;
+  width: 100%;
+    /* 布局改动 */
 }
+
 #Three ul {
+  /* 布局改动 */
+  display:flex;
   padding: 3% 0;
   top: 0;
+
   text-align: center;
+  justify-content: space-between;
 }
 #Three ul li {
   list-style: none;

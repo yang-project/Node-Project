@@ -1,42 +1,50 @@
 <template>
     <div id='main'>
       <!-- :class="isFixed== true?'isFixed':''" -->
-         <search_a ></search_a>
-         <swipe></swipe>
-         <div  class="line"></div>
-         <Menu></Menu>
-         <div  class="line"></div>
-         <three></three>
-         <div  class="line"></div>
-         <miaosha></miaosha>
-         <div  class="line"></div>
-         <shops></shops>
-         <div  class="line"></div>
-         <ydyiyao></ydyiyao>
-         <div  class="line"></div>
-         <diff></diff>
-         <div  class="line"></div>
-         <recommend></recommend>
-<!-- 没有啦 -->
-         <div class="no-data">
-            <div class="no-data-content">
-              <p> 没有啦 </p>
-            </div>
+         <div id='header'>
+            <search_a ></search_a>
+           
          </div>
-<!-- 底部 -->
-         <footer  id="foot">
-           <div  id="footer">
-             <nav  class="download_link">
-               <a >下载客户端</a>
-               </nav> 
-               <p >
-                  豫备案号ICP备14026278-1
-                  <a  href="/zizhi" style="color: rgb(0, 147, 231);">资质证书</a>
-               </p> 
-               <p >版权信息：河南优德大药房连锁有限公司</p>
-            </div>
-         </footer>
-<!-- 回到顶部 -->
+         <div class='main'> 
+            <swipe></swipe>
+            <div  class="line"></div>
+            <Menu></Menu>
+            <div  class="line"></div>
+            <three></three>
+            <div  class="line"></div>
+            <miaosha></miaosha>
+            <div  class="line"></div>
+            <shops></shops>
+            <div  class="line"></div>
+            <ydyiyao></ydyiyao>
+            <div  class="line"></div>
+            <diff></diff>
+            <div  class="line"></div>
+            <recommend></recommend>
+         </div>
+        <div id='bottom'>
+
+          <div class="no-data">
+              <div class="no-data-content">
+                <p> 没有啦 </p>
+              </div>
+          </div>
+  <!-- 底部 -->
+          <footer  id="foot">
+            <div  id="footer">
+              <nav  class="download_link">
+                <a >下载客户端</a>
+                </nav> 
+                <p >
+                    豫备案号ICP备14026278-1
+                    <a  href="/zizhi" style="color: rgb(0, 147, 231);">资质证书</a>
+                </p> 
+                <p >版权信息：河南优德大药房连锁有限公司</p>
+              </div>
+          </footer>
+  <!-- 回到顶部 -->
+        </div>
+<!-- 没有啦 -->
         <div   class="go-top-wrapper" style="">
           <i  class="icon iconfont icon-top"></i>
         </div>
@@ -87,10 +95,24 @@ export default {
   height: 40px;
 }
 .no-data-content {
-  width: 100%;
-  height: 40px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+.no-data .no-data-content p {
   text-align: center;
-  background-color: #f5f5f5;
+    line-height: 20px;
+    position: absolute;
+    top: 10px;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+    color: #d3d3d3;
+    font-size: 14px;
+    display: block;
+    background: #f5f5f5;
+    z-index: 2;
 }
 /* 回到顶部 */
 #main .go-top-wrapper {
@@ -124,30 +146,30 @@ export default {
   position: inherit;
   padding-bottom: 45px;
 }
-#footer[data-v-e37d4f68] {
+#foot #footer{
   width: 100%;
   background-color: #f5f5f5;
   padding-bottom: 18px;
   padding-top: 12px;
   text-align: center;
 }
-.download_link[data-v-e37d4f68] {
+#footer .download_link {
   margin: 5px 0;
 }
 
-#footer p[data-v-e37d4f68] {
+#footer p {
   font-size: 12px;
   color: #b6b6b6;
   line-height: 18px;
 }
 
-a {
+#footer .download_link  a {
   color: #7e8c8d;
   -webkit-backface-visibility: hidden;
   text-decoration: none;
   color: rgb(0, 147, 231);
 }
-#footer p[data-v-e37d4f68] {
+#footer p {
   font-size: 12px;
   color: #b6b6b6;
   line-height: 18px;

@@ -28,7 +28,7 @@
         </div>
         
         <div class="swiper-container swiper-container-horizontal swiper-container2" id="imgList1">
-          <div class="swiper-wrapper " >
+          <div class="swiper-wrapper" >
             <!-- <div class="swiper-slide"  v-for="item  in recommend"
           :key="item.id" > -->
           <div class="swiper-slide" v-for="item  in recommend"
@@ -69,7 +69,7 @@ export default {
 
   methods: {
     countdown: function() {
-      const end = Date.parse(new Date("2019-01-20"));
+      const end = Date.parse(new Date("2019-01-30"));
       const now = Date.parse(new Date());
       const msec = end - now;
       let day = parseInt(msec / 1000 / 60 / 60 / 24);
@@ -87,7 +87,7 @@ export default {
       // console.log(this.day);
     },
     getlist: function() {
-      this.$ajax
+      this.$axios
         .get("/api/f/app/s_10020/periods/indexGoods")
         .then(res => {
           //s
@@ -124,7 +124,8 @@ export default {
 @import url("../../../static/swiper.css");
 #miaosha {
   height: 175px;
-  width: 320px;
+  /* width: 320px; */
+  width: 100%;
 }
 #miaosha .miaosha {
   height: 80px;
@@ -187,6 +188,9 @@ export default {
 #miaosha #imgList1 .swiper-wrapper {
   /* width: 320px; */
   height: 80px;
+  width: 100%;
+  display:flex;
+  justify-content: space-between;
 }
 
 #miaosha #imgList1 .swiper-slide {

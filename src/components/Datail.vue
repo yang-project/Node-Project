@@ -3,7 +3,7 @@
         <div class='container'>
             <header class="header-container"> 
               <div  class="f_logo">
-                  <i class="icon iconfont icon-back"></i>
+                  <i class="icon iconfont icon-fanhui" @click='back'></i>
               </div> 
               <div class="title-box">
                   <div class=" titleTab" 
@@ -38,16 +38,19 @@
            <div class="bottom-fix">
               <div class='bottom-left'>
                   <div class='bottom-leftA'>
-                      <p class='icons'><i></i></p>
+                      <p class='icons'><i  class='icons iconfont icon-iconfontphone17' style='display:inline-block;height:27px;width:27px;font-size:30px;'></i></p>
                       <p class="bottom-title">电话</p>
                   </div>
-                  <div class='bottom-leftB'>
-                      <p class='icons'><i></i></p>
-                      <p class="bottom-title">购物车</p>
+                  <div class='bottom-leftB' >
+                      <p class='icons iconcart'>
+                        <i class='icons iconfont icon-cart' style='display:inline-block;height:27px;width:27px;font-size:30px;'></i>
+                      </p>
+                      <span class='totalnum' ref='totalnum'></span>
+                      <p class="bottom-title"  @click="goto('Cart',gooddatail.id)">购物车</p>
                   </div> 
               </div>
               <div  class='bottom-right'>
-                  <div class='right-car'>
+                  <div class='right-car' @click='add_cart(gooddatail)'>
                         加入购物车
                     </div>
                     <div class='right-buy'>
@@ -63,7 +66,7 @@
 <script>
 // 获取home中的state的show值
 // 先引入
-// import
+import Vue from 'vue'
 export default {
   data() {
     return {
@@ -79,12 +82,30 @@ export default {
   methods: {
     toggle(item, index) {
       this.current = index;
+    },
+    goto(name){
+      this.$router.push({
+        name:name,
+        id:this.gooddatail.id})
+
+    },
+    back(){
+
+      this.$router.go(-1)
+
+      },
+  
+    add_cart(item){
+      this.$store.commit('add',item)
+      this.$refs.totalnum.innerText='+'+this.$store.state.cart.number;
+      console.log(this.$store.state.cart.cartlist,this.$store.state.cart.number) 
+
     }
   },
   created() {
     this.$store.state.home.show = false;
     // console.dir(this.id);
-    this.$ajax
+    this.$axios
       .get("/api/f/app/s_10020/goods/ajax/goods?id=" + this.id)
       .then(res => {
         //s
@@ -100,13 +121,13 @@ export default {
       .catch(() => {
         // Indicator.close();
       });
-  }
+  },
   // destroyed() {
   //   this.$store.state.home.show = true;
   // }
 };
 </script>
-<style>
+<style scoped>
 #datail {
   width: 320px;
 }
@@ -137,17 +158,18 @@ export default {
 
 .header-container .f_logo i {
   display: inline;
-  font-size: 0.4rem;
+  font-size: 30px;
   color: #585959;
   font-weight: 700;
   width: 20px;
 }
 .header-container .title-box {
-  width: 200px;
+  width: 245px;
   height: 100%;
   box-sizing: border-box;
-  text-align: center;
+  padding: 0 30px;
   border-radius: 3px;
+  text-align: center;
 }
 .header-container .title-box > div {
   float: left;
@@ -254,9 +276,24 @@ export default {
   justify-content: space-between;
 }
 
+
 .bottom-fix .bottom-left .bottom-leftA {
   height: 50%;
   width: 62px;
+}
+.bottom-fix .bottom-left .bottom-leftB{
+  position: relative;
+}
+.bottom-fix .bottom-left .bottom-leftB .totalnum{
+position:absolute;
+top:0;
+right: 17px;
+display: inline-block;
+width: 20px;
+height: 20px;
+color:red;
+font-size: 18px;
+font-weight: 999;
 }
 .bottom-fix .bottom-right {
   display: flex;
@@ -270,10 +307,18 @@ export default {
   line-height: 50px;
 }
 .bottom-fix .bottom-right .right-car {
-  background: #377dcc;
+  background: #4792d1;
+  color: #fff;
+
+
+
+
+
+
 }
 .bottom-fix .bottom-right .right-buy {
-  background: pink;
+  background: #ff5d5d;
+  color: #fff;
 }
 </style>
 

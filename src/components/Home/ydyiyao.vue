@@ -46,7 +46,7 @@ export default {
 
   methods: {
     getList: function() {
-      this.$ajax
+      this.$axios
         .get("/api/f/app/s_10020/spgroupbuying/list/json")
         .then(res => {
           //s
@@ -95,7 +95,7 @@ export default {
 
 #ydyiyao .ydyiyao .ydyiyaoLeft h1 {
   height: 20px;
-  width: 30px;
+  width: 60px;
   font-size: 14px;
   vertical-align: 3px;
   /* margin-left: 15px; */

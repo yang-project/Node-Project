@@ -17,13 +17,37 @@
 import Vue from "vue";
 // import myicons from "@/plugins/icons";
 // Vue.use(myicons);
-// 引入mint-ui 全局引入
-import MINTUI from "mint-ui";
-Vue.use(MINTUI);
-// 引入样式
+import MintUI from "mint-ui";
+Vue.use(MintUI);
 import "mint-ui/lib/style.css";
-// 引入公共样式
 import "./scss/common.css";
+import axios from 'axios';
+
+// 把axios写入Vue的原型对象，方便后面调用
+Vue.prototype.$axios = axios;
+// 注入拦截器 全局
+// loading效果 
+import { Indicator } from 'mint-ui';
+axios.interceptors.request.use(config => {
+    Indicator.open('loading');
+    console.log('config:',config);
+    // config.params.token = '10086';
+    return config
+}, error => {
+    Indicator.close();
+    
+    return Promise.reject(error)
+})
+// http响应拦截器
+axios.interceptors.response.use(data => {
+    // 响应成功关闭loading
+    Indicator.close();
+    return data
+}, error => {
+    Indicator.close();
+    return Promise.reject(error)
+})
+
 export default {
   name: "App",
   data() {
@@ -64,13 +88,14 @@ export default {
   },
   created() {
     this.$store.state.home.show = true;
+    // console.log( '11'+this.$store);
   }
 };
 </script>
 
 <style>
 #app {
-  width: 320px;
+  width: 100%;
   height: 568px;
   overflow: auto;
 }

@@ -30,7 +30,7 @@ export default {
   created() {
     // 以/dbapi开头的请求，进入到代理服务器（webpack配置）
     // /dbapi/in_theaters  -> http://api.douban.com/v2/movie/dbapi/in_theaters -> http://api.douban.com/v2/movie/in_theaters
-    this.$ajax
+    this.$axios
       .get("/api/f/app/s_10020/cmsSite/list/json")
       .then(res => {
         //s

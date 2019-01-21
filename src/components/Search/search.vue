@@ -1,9 +1,17 @@
 <template>
     <div id='search'>
         <div class="search-wrapper">
+           <span  class="icon iconfont icon-fanhui" 
+              style=' float:left;
+              display: inline-block;
+              width: 27px;
+              height: 40px;
+              font-size:30px;
+              z-index: 10;' @click='back' >
+           </span>
             <div  class="input-wrapper">
-                <span  class="icon iconfont icon-search"></span>
-                <span  class="icon iconfont icon-close-b" style="display: none;"></span>
+               
+                <span  class="icon iconfont icon-xiaoxi--copy" style='font-size:30px'></span>
                 <input  placeholder="搜索商品">
             </div>
             <div  class="button-wrapper" style="">
@@ -13,11 +21,36 @@
     </div>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+     back(){
+
+      this.$router.go(-1)
+
+      }
+  }
+   
+};
 </script>
 <style  scoped>
+/* @import url('../../../assets/iconfont/iconfont.css'); */
 @import url("../../../static/swiper.css");
 
+#search{
+    position: fixed;
+    width: 100%;
+    /* height: .96rem; */
+    height: 47px;
+    padding-top: 0;
+    line-height: 1.5;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: auto;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid #e7e7e7;
+}
 .search-wrapper {
   width: 320px;
   font-size: 0;
@@ -41,34 +74,25 @@ export default {};
   background-color: #e4e5e7;
   position: relative;
 }
-.search-wrapper .input-wrapper .icon-search {
-  display: inline-block;
-  /* position: absolute; */
-  font-size: 0.4rem;
-  color: #bbb;
-  /* top: 0;
-  left: 10px; */
-  width: 20px;
-  height: 20px;
-  transform: translateY(-49%);
-  z-index: 10;
+.search-wrapper .input-wrapper  .icon-xiaoxi--copy{
+
 }
-.search-wrapper .input-wrapper .icon-close-b.icon-close-b,
-.search-wrapper .input-wrapper .icon-search.icon-close-b {
-  right: 0.2rem;
-  color: #aaa;
+#search .search-wrapper .input-wrapper .icon-fanhui {
+ 
 }
+
 .search-wrapper .input-wrapper input {
+   float:left;
   display: inline-block;
   height: 30px;
   text-indent: 0.5rem;
   /* box-sizing: border-box; */
   border-radius: 0.26rem;
-  line-height: 0.4rem;
-
+  line-height:30px;
   width: 80%;
   color: #444;
   background-color: #e4e5e7;
+  margin-left:2px;
 }
 /* 取消button */
 .search-wrapper .button-wrapper {

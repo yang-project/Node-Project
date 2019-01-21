@@ -1,36 +1,41 @@
 <template>
     <div id='tab'>
-        <search></search>
-        <div class="tab-bar">
-             <!-- 左边区域 -->
-          <div class='Left clearfix' >
-             <a href="javascript:;"
-              @click="tab(index)"   v-for="(item,index) in Datas" 
-            :key='item.id'
-              :class="{active : index===curId}">
-              {{item.name}}
-            </a>
-          </div>
-          <!-- 右边区域 -->
-    
-            <div class="tab-con"  v-for="(content,index) in items" :key='content.id' v-show="index==curId">
-               <!-- v-show="indx===curId" v-show="index==curId"-->
-                <div v-for="leaf in content.leaf" :key="leaf.id">
+      <div class='tab_header'>
+          <search></search>
+       
+      </div>
+      
 
-                  <p class="name"><span>|</span>{{leaf.name}}</p>
-
-                  <div class="item-wrapper clearfix" >
-                  <div class="goods-item" v-for="con in leaf.leaf" :key="con.id" @click="goto('Goodlist',con.id)">
-                      <img :src="con.cover" class="goods-img">                    
-                      <p class="goods-name">{{con.name}}</p>
-                  </div>
-                  </div> 
-                </div>
-              </div>
-              
-            </div>
-          
+      <div class="tab-bar clearfix">
+            <!-- 左边区域 -->
+        <div class='Left clearfix' >
+            <a href="javascript:;"
+            @click="tab(index)"   v-for="(item,index) in Datas" 
+          :key='item.id'
+            :class="{active : index===curId}">
+            {{item.name}}
+          </a>
         </div>
+        <!-- 右边区域 -->
+
+          <div class="tab-con"  v-for="(content,index) in items" :key='content.id' v-show="index==curId">
+              <!-- v-show="indx===curId" v-show="index==curId"-->
+              <div v-for="leaf in content.leaf" :key="leaf.id">
+
+                <p class="name"><span>|</span>{{leaf.name}}</p>
+
+                <div class="item-wrapper clearfix" >
+                <div class="goods-item" v-for="con in leaf.leaf" :key="con.id" @click="goto('Goodlist',con.id)">
+                    <img :src="con.cover" class="goods-img">                    
+                    <p class="goods-name">{{con.name}}</p>
+                </div>
+                </div> 
+              </div>
+            </div>
+            
+          </div>
+            
+      </div>
         
 
    
@@ -68,7 +73,8 @@ export default {
     }
   },
   created() {
-    this.$ajax
+
+    this.$axios
       .get("/api/f/app/s_10020/loadCategory ")
       .then(res => {
         //s
@@ -113,17 +119,24 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
+/* @import url("../../../static/swiper.css"); */
 #tab {
-  width: 320px;
+  width: 100%;
+  flex-direction: column;
 }
+#tab .tab_header{
+  width: 100%;
+  height: 47px;
+}
+
 .tab-bar {
   display: flex;
   justify-content: space-between;
 }
 .tab-bar .Left {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   width: 99px;
   height: 477px;
   /* position: fixed;

@@ -2,8 +2,10 @@
     <div id='list'>
         <div  class="wrapper">
             <div class="boxtab">
-
-           
+                <div id='list_search'>
+                  <search></search>
+                </div>
+                
                 <ul  class="tab">
                     <li  class="">新品</li> 
                     <li  class="active">销量</li> 
@@ -36,6 +38,7 @@
  
 </template>
 <script>
+import search from "./Search/search.vue";
 export default {
   data() {
     return {
@@ -43,9 +46,14 @@ export default {
       thridCategoryId: this.$route.query.thridCategoryId
     };
   },
+   components: {
+    // 第二步：局部注册组件
+    search
+  },
   created() {
     console.dir(this.id);
-    this.$ajax
+
+    this.$axios
       .get(
         "/api/f/app/s_10020/goods/list/json?keywords=&pageIndex=1&thridCategoryId=" +
           this.thridCategoryId
@@ -74,17 +82,24 @@ export default {
 #list {
   width: 320px;
 }
+
 #list .wrapper .boxtab {
+   position: fixed;
+   top: 0;
+   z-index: 3;
+
   height: 154px;
   width: 100%;
 }
+#list .wrapper  .boxtab #list_search{
+  height: 41px;
+}
 .wrapper .tab {
-  position: fixed;
-  top: 82px;
+ 
+  
   width: 100%;
-  height: 70px;
-  line-height: 70px;
-
+  height: 56px;
+  line-height: 56px;
   display: flex;
   border-bottom: 1px solid #ddd;
   z-index: 10;

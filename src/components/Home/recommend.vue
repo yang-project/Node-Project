@@ -34,7 +34,7 @@ export default {
   created() {
     // 以/dbapi开头的请求，进入到代理服务器（webpack配置）
     // /dbapi/in_theaters  -> http://api.douban.com/v2/movie/dbapi/in_theaters -> http://api.douban.com/v2/movie/in_theaters
-    this.$ajax
+    this.$axios
       .get("/api/f/app/s_10020/goods/recommend/list?pageIndex=1")
       .then(res => {
         //s
@@ -52,7 +52,7 @@ export default {
 <style scoped>
 #recommend {
   width: 320px;
-  height: 4018px;
+  /* height: 4018px; */
 }
 #recommend .recommendTitle {
   height: 30px;

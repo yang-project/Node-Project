@@ -24,7 +24,7 @@ export default {
   created() {
     // 以/dbapi开头的请求，进入到代理服务器（webpack配置）
     // /dbapi/in_theaters  -> http://api.douban.com/v2/movie/dbapi/in_theaters -> http://api.douban.com/v2/movie/in_theaters
-    this.$ajax
+    this.$axios
       .get("/api/f/xcx/s_10020/advertising/list?type=4")
       .then(res => {
         //s
@@ -46,6 +46,7 @@ export default {
 #Menu {
   font-size: 16px !important;
   height: 184px;
+   width: 100%;
 }
 #Menu ul {
   padding: 3% 0;
